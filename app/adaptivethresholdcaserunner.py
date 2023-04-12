@@ -1,17 +1,17 @@
 import os
 
-from app.algorithms import CustomThresholdAlgorithm
+from app.algorithms import AdaptiveThresholdAlgorithm
 from app.displayers import CentroidsPainter, WindowDisplayer
 from app.loaders import LocalStorageLoader
 from app.writers import LocalStorageWriter
 
 
-class CustomThresholdCaseRunner:
+class AdaptiveThresholdCaseRunner:
 
     def __init__(self) -> None:
         self.loader = LocalStorageLoader()
         self.writer = LocalStorageWriter()
-        self.algorithm = CustomThresholdAlgorithm()
+        self.algorithm = AdaptiveThresholdAlgorithm()
         self.painter = CentroidsPainter()
         self.displayer = WindowDisplayer()
 
@@ -23,8 +23,8 @@ class CustomThresholdCaseRunner:
             # find
             n_brightest_pixels = self.algorithm.find_pixels(
                 img=img,
-                lower_threshold=200,
-                upper_threshold=255,
+                block_size=5,
+                constant=5,
                 n=n_pixels
             )
             # paint

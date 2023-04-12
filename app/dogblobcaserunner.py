@@ -1,17 +1,17 @@
 import os
 
-from app.algorithms import CustomThresholdAlgorithm
+from app.algorithms import DOGBlobAlgorithm
 from app.displayers import CentroidsPainter, WindowDisplayer
 from app.loaders import LocalStorageLoader
 from app.writers import LocalStorageWriter
 
 
-class CustomThresholdCaseRunner:
+class DogBlobCaseRunner:
 
     def __init__(self) -> None:
         self.loader = LocalStorageLoader()
         self.writer = LocalStorageWriter()
-        self.algorithm = CustomThresholdAlgorithm()
+        self.algorithm = DOGBlobAlgorithm()
         self.painter = CentroidsPainter()
         self.displayer = WindowDisplayer()
 
@@ -23,9 +23,9 @@ class CustomThresholdCaseRunner:
             # find
             n_brightest_pixels = self.algorithm.find_pixels(
                 img=img,
-                lower_threshold=200,
-                upper_threshold=255,
-                n=n_pixels
+                threshold=5,
+                min_area=5,
+                max_area=250
             )
             # paint
             img_with_circles_and_text = self.painter.paint(

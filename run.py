@@ -1,12 +1,15 @@
 import datetime
-from typing import Dict
 
 from app.customthresholdcaserunner import CustomThresholdCaseRunner
+from app.adaptivethresholdcaserunner import AdaptiveThresholdCaseRunner
+from app.dogblobcaserunner import DogBlobCaseRunner
 
 
-def main():
-    runners: Dict[str, object] = {
-        'custom threshold algorithm': CustomThresholdCaseRunner
+def main() -> None:
+    runners = {
+        'custom threshold algorithm': CustomThresholdCaseRunner,
+        'adaptive threshold algorithm': AdaptiveThresholdCaseRunner,
+        'DOG blob detector algorithm': DogBlobCaseRunner,
     }
     for case_title, case_runner_cls in runners.items():
         print(f'[DBG] [{datetime.datetime.now()}] start running case {case_title}')

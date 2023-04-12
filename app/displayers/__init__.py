@@ -1,4 +1,4 @@
-from app.displayers.painter import Painter
+from app.displayers.painter import CentroidsPainter
 from app.displayers.windowdisplayer import WindowDisplayer
 
-__all__ = ["Painter", "WindowDisplayer"]
+__all__ = ["CentroidsPainter", "WindowDisplayer"]
